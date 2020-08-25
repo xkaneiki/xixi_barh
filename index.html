@@ -1,0 +1,60 @@
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+        .process_gif {
+            /*显示动态barh*/
+            background-image: url("./xixi.gif");
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 0 auto;
+            width: 370px;
+            height: 220px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .show_txt {
+            /*显示文字*/
+            margin: 0 auto;
+            background-color: azure;
+            width: 370px;
+            height: 200px;
+            position: relative;
+            text-align: center;
+            padding-top: 10px;
+            z-index: 1;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div class="process_gif" id="process"></div>
+    <div class="show_txt" id="content_1"></div>
+</body>
+
+<script type="text/javascript">
+    /// 显示文字功能 ----------------------------------
+    let divTyping = document.getElementById('content_1'); //通过id获取div节点
+    let a = 0;
+    timer = 0;
+    str = "我们已经相遇 689 天<br>在一起了 659 天<br>距离最近一次看电影 245 天<br>距离最近一次约会 60 天<br>距离最近一次分别 59 天<br>距离最近一次吵架 34 天";
+    function typing() {
+        if (a <= str.length) { 
+            divTyping.innerHTML = str.slice(0, a++) + '_';
+            timer = setTimeout(typing, 100); 
+        }
+        else {
+            divTyping.innerHTML = str; //结束打字,移除 _ 光标
+            clearTimeout(timer);
+        }
+    }
+
+    window.onload = function () {
+        typing();
+        setTimeout(function () {
+            thisdiv = document.getElementById("process");
+            thisdiv.style.backgroundImage = "url('./stop_image.png')"; 
+        }, 2000); 
+    }
+</script>
